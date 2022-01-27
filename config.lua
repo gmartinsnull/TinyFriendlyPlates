@@ -15,7 +15,6 @@ end
 SLASH_CONFIG1 = "/tfp"
 SlashCmdList["CONFIG"] = function(msg)
 	frame:Show()
-	print("config")
 end
 
 -- main frame
@@ -52,7 +51,6 @@ s:SetScript("OnValueChanged", function(self,value)
 	currentWidth = result
 	SetFriendlyNameplates(result)
 end)
-s:Show()
 
 -- edit box
 box:SetSize(30,17)
@@ -90,4 +88,5 @@ frame:SetScript("OnEvent",function(self,event,...)
 	-- print(C_NamePlate.GetNamePlateFriendlySize())
 	-- SetFriendlyNameplates(154.00001525879, 64.125) -- default nameplate size
 	SetFriendlyNameplates(60)
+	frame:Hide()
 end)

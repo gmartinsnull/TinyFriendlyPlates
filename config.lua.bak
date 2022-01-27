@@ -12,10 +12,9 @@ function SetFriendlyNameplates(newWidth)
 end
 
 -- function to open config interface menu
-SLASH_CONFIG = "/tfp"
+SLASH_CONFIG1 = "/tfp"
 SlashCmdList["CONFIG"] = function(msg)
 	frame:Show()
-	print("config")
 end
 
 -- main frame
@@ -36,6 +35,7 @@ frame:SetPoint("CENTER",0,0)
 frame.text = fsTitle
 frame.text:SetPoint("TOP",0,16)
 frame.text:SetText("TinyFriendlyPlates")
+frame:Hide()
 
 -- slider
 s:SetWidth(144)
@@ -52,7 +52,6 @@ s:SetScript("OnValueChanged", function(self,value)
 	currentWidth = result
 	SetFriendlyNameplates(result)
 end)
-s:Show()
 
 -- edit box
 box:SetSize(30,17)
@@ -90,4 +89,5 @@ frame:SetScript("OnEvent",function(self,event,...)
 	-- print(C_NamePlate.GetNamePlateFriendlySize())
 	-- SetFriendlyNameplates(154.00001525879, 64.125) -- default nameplate size
 	SetFriendlyNameplates(60)
+	frame:Hide()
 end)
