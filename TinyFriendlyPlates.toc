@@ -1,0 +1,7 @@
+## Interface: 90100
+## Title: TinyFriendlyPlates
+## Author: refaktor
+## Version: 1.0.1
+## Notes: Changes friendly nameplates width. Set to 60 by default.
+
+config.lua

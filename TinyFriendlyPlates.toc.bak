@@ -1,0 +1,7 @@
+## Interface: 90100
+## Title: TinyFriendlyPlates
+## Author: refaktor
+## Version: 1.0.1
+## Notes: Shortens friendly nameplates length to 30%
+
+config.lua
