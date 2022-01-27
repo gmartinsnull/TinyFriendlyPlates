@@ -4,7 +4,7 @@ local box = CreateFrame("EditBox", "EditBoxWidth", frame, "InputBoxTemplate")
 local b = CreateFrame("Button", "ButtonClose", frame, "UIPanelButtonTemplate")
 local s = CreateFrame("Slider", "SliderWidth", frame, "OptionsSliderTemplate")
 
-local currentWidth = 30
+local currentWidth = 60
 
 -- function that sets friendly nameplates
 function SetFriendlyNameplates(newWidth)
@@ -14,6 +14,8 @@ end
 -- function to open config interface menu
 SLASH_CONFIG1 = "/tfp"
 SlashCmdList["CONFIG"] = function(msg)
+	s:SetValue(currentWidth)
+	box:SetText(currentWidth)
 	frame:Show()
 end
 
@@ -63,7 +65,6 @@ box:SetScript("OnEscapePressed", function()
 end)
 box:SetScript("OnEnterPressed", function()
 	local width = box:GetNumber()
-	print(currentWidth)
 	if(width >= 40 and width <= 154) 
 	then
 		s:SetValue(width)
@@ -82,11 +83,34 @@ b:SetScript("OnClick", function()
     frame:Hide()
 end)
 
--- onload
+-- on login
 frame:RegisterEvent("PLAYER_LOGIN")
-frame:SetScript("OnEvent",function(self,event,...)
+
+-- on addon loaded
+frame:RegisterEvent("ADDON_LOADED")
+
+-- on logout
+frame:RegisterEvent("PLAYER_LOGOUT")
+
+function frame:OnEvent(event, arg1)
 	-- print(C_NamePlate.GetNamePlateFriendlySize())
 	-- SetFriendlyNameplates(154.00001525879, 64.125) -- default nameplate size
-	SetFriendlyNameplates(60)
+	if event == "ADDON_LOADED" and arg1 == "TinyFriendlyPlates"
+	then
+		if TinyNameplatesNewCharacter ~= nil
+		then
+			-- saved character
+			currentWidth = TinyNameplatesNewCharacter
+		else
+			-- new character
+			TinyNameplatesNewCharacter = currentWidth
+		end
+	elseif event == "PLAYER_LOGOUT" then
+		-- save data
+		TinyNameplatesNewCharacter = currentWidth
+	end
+	SetFriendlyNameplates(TinyNameplatesNewCharacter)
 	frame:Hide()
-end)
+end
+
+frame:SetScript("OnEvent", frame.OnEvent)
