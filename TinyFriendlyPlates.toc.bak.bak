@@ -1,0 +1,16 @@
+<<<<<<< HEAD
+## Interface: 100107
+## Title: TinyFriendlyPlates
+## SavedVariablesPerCharacter: TinyNameplatesNewCharacter 
+## Author: refaktor
+## Version: 1.0.3
+=======
+## Interface: 90100
+## Title: TinyFriendlyPlates
+## SavedVariablesPerCharacter: TinyNameplatesNewCharacter 
+## Author: refaktor
+## Version: 1.0.1
+>>>>>>> ddbf1aab2f432725cd43ef20b4215c49019ee991
+## Notes: Changes friendly nameplates width. Set to 60 by default.
+
+config.lua
